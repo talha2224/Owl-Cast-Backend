@@ -79,9 +79,7 @@ const getAllByPlaylistId = async (req, res) => {
 const getAllByCreatorId = async (req, res) => {
     try {
         const { id } = req.params;
-        let data = await MusicModel.find({ creatorId: id })
-            .populate("creatorId")
-            .populate("playlistId");
+        let data = await MusicModel.find({ creatorId: id }).populate("listeners").populate("creatorId").populate("playlistId");
         return res.status(200).json({ data: data, msg: "", status: 200 });
     }
     catch (error) {

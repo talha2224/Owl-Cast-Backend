@@ -9,7 +9,6 @@ router.get("/playlist/:id",getAllByPlaylistId)
 router.get("/creator/:id",getAllByCreatorId)
 router.get("/download/:id",increaseDownload)
 router.put("/listener/:id",addListener)
-router.put("/listener/:id",addListener)
 router.put("/status/:id",changeStatus)
 
 
