@@ -11,7 +11,8 @@ const musicSchema = new mongoose.Schema({
     tags: { type: String, required: true },
     listeners: [{ type: mongoose.Schema.Types.ObjectId, ref: "Account" }],
     downloaded: { type: Number, default: 0 },
-    status: { type: String, default: "Active" }
+    status: { type: String, default: "Active" },
+    duration:{type:String,default:"120"}
 },{ timestamps: true });
 
 

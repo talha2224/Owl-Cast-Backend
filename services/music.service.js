@@ -3,7 +3,7 @@ const { uploadFile } = require("../utils/function");
 
 const uploadMusic = async (req, res) => {
     try {
-        let { title, description, tags, type, creatorId, playlistId,status} = req.body;
+        let { title, description, tags, type, creatorId, playlistId,status,duration} = req.body;
         let image = req.files.image && req.files.image;
         let audio = req.files.audio && req.files.audio;
 
@@ -24,7 +24,8 @@ const uploadMusic = async (req, res) => {
                 playlistId,
                 audio: recordingUrl,
                 image: imageUrl,
-                status
+                status,
+                duration
             });
         }
         else{
@@ -36,7 +37,8 @@ const uploadMusic = async (req, res) => {
                 creatorId,
                 audio: recordingUrl,
                 image: imageUrl,
-                status
+                status,
+                duration
             });
         }
 
