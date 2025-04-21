@@ -35,7 +35,10 @@ const createAccount = async (req, res) => {
 const loginAccount = async (req, res) => {
     try {
         let { email, password, } = req.body
-        let findUser = await AccountModel.findOne({email,role:"user"})
+        let findUser = await AccountModel.findOne({ 
+            email, 
+            role: { $in: ["user", "sub admin"] } 
+        });
         if (!findUser) {
             return res.status(400).json({ data: null, msg: "Account not exits", code: 400 })
         }
