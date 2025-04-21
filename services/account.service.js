@@ -2,6 +2,7 @@ const { AccountModel } = require("../models/account.model");
 const bcrypt = require("bcryptjs")
 const { generatePin, uploadFile } = require("../utils/function");
 const { sendDynamicMail } = require("../utils/email");
+const { TransactionModel } = require("../models/transaction.model");
 
 
 
@@ -195,6 +196,18 @@ const uploadPicture = async (req,res)=>{
     }
 }
 
+const updateSubscription = async (req,res)=>{
+    try {
+        let { id } = req.params;
+        let {planName,amount} = req?.body
+        let update = await AccountModel.findByIdAndUpdate(id,{isSubscribed:true,planName},{new:true})
+        await TransactionModel.create({userId:id,amount})
+        return res.status(200).json({data:update,msg:"Subscription Updated"})
+    } 
+    catch (error) {
+        console.log(error)
+    }
+}
 
 const deleteAccount = async (req,res)=>{
     try {
@@ -208,4 +221,4 @@ const deleteAccount = async (req,res)=>{
 }
 
 
-module.exports = {uploadPicture,createAccount, loginAccount,createCreatorAccount,loginCreatorAccount,getAccountById, resendOtp, verifyOtp, getAllAccount,changePassword,deleteAccount}
+module.exports = {uploadPicture,createAccount, loginAccount,createCreatorAccount,loginCreatorAccount,getAccountById, resendOtp, verifyOtp, getAllAccount,changePassword,deleteAccount,updateSubscription}

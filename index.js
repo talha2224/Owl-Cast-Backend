@@ -20,7 +20,9 @@ app.post("/create-checkout-session", async (req, res) => {
     try {
         const { amount } = req.body;
 
-        const session = await stripe.checkout.sessions.create({payment_method_types: ["card"],line_items: [{price_data: {currency: "usd",product_data: {name: "Money Transfer",},unit_amount: amount * 100,},quantity: 1,},],mode: "payment",success_url: `https://owl-cast.netlify.app/dashboard/home?query=Music`,cancel_url: `https://owl-cast.netlify.app/dashboard/home?query=Music`,});
+        // const session = await stripe.checkout.sessions.create({payment_method_types: ["card"],line_items: [{price_data: {currency: "usd",product_data: {name: "Money Transfer",},unit_amount: amount * 100,},quantity: 1,},],mode: "payment",success_url: `https://owl-cast.netlify.app/dashboard/home?query=Music`,cancel_url: `https://owl-cast.netlify.app/dashboard/home?query=Music`,});
+        const session = await stripe.checkout.sessions.create({payment_method_types: ["card"],line_items: [{price_data: {currency: "usd",product_data: {name: "Money Transfer",},unit_amount: amount * 100,},quantity: 1,},],mode: "payment",success_url: `http://localhost:5173/dashboard/home?query=success`,cancel_url: `http://localhost:5173/dashboard/home?query=failed`,});
+
         res.json({ url: session.url });
     } 
     catch (error) {

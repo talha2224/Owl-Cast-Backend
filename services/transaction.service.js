@@ -11,7 +11,7 @@ const createTransaction = async (req,res) =>{
 }
 const getAllTransaction = async (req,res) =>{
     try {
-        let data = await TransactionModel.find()
+        let data = await TransactionModel.find().populate("userId")
         return res.status(200).json({data:data,msg:"",status:200})
     } 
     catch (error) {
