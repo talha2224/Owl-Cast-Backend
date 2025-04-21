@@ -24,7 +24,7 @@ module.exports = {
           <div style='display:flex;border-radius:10px;padding:10px;height:max-content;'>
             <div class='container' style='background-color:white;margin-left:auto;margin-right:auto;border-radius:10px;padding:10px;height:max-content;'>
               <div style='text-align:center'>
-                <img src='https://i.ibb.co/BV9wxDzx/logo-CT742y-SK.png'style='height:225px;' />
+                <img src='https://i.ibb.co/BV9wxDzx/logo-CT742y-SK.png' />
               </div>
               <div>
                 <p>Hi <strong>${name},</strong></p>
