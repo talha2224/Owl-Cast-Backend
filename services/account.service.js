@@ -12,7 +12,7 @@ const { TransactionModel } = require("../models/transaction.model");
 
 const createAccount = async (req, res) => {
     try {
-        let {role,firstName,lastName,email,password,aspect,dob,country} = req.body
+        let {role,firstName,lastName,email,password,aspect,dob,country,key} = req.body
         let findUser = await AccountModel.findOne({ email,role:"user"})
         if (findUser) {
             return res.status(400).json({ data:null, msg: "Account already exits", code: 400 })
@@ -23,7 +23,7 @@ const createAccount = async (req, res) => {
             let pin = generatePin()
             await sendDynamicMail("verification", email, name, pin);
 
-            let result = await AccountModel.create({role,firstName,lastName,email,password:hash,aspect,dob,country,otp:pin})
+            let result = await AccountModel.create({role,firstName,lastName,email,password:hash,aspect,dob,country,otp:pin,key})
             return res.status(200).json({ data: result, msg: "Account Created Please Verify Your Profile", status: 200 })
 
         }
@@ -39,6 +39,7 @@ const loginAccount = async (req, res) => {
             email, 
             role: { $in: ["user", "sub admin"] } 
         });
+        console.log(findUser)
         if (!findUser) {
             return res.status(400).json({ data: null, msg: "Account not exits", code: 400 })
         }

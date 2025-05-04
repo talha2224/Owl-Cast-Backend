@@ -12,6 +12,9 @@ const AccountSchema = mongoose.Schema({
     dob:{type:String,default:null},
     country:{type:String,default:null},
 
+    key:{type:String,default:null},
+
+
     profile:{type:String,default:null},
     otp:{type:Number,default:null},
     otpVerified:{type:Boolean,default:false},
