@@ -19,5 +19,14 @@ const getAllPlaylist = async (req,res) =>{
         console.log(error)
     }
 }
+const getPlaylist = async (req,res) =>{
+    try {
+        let data = await PlaylistModel.find({})
+        return res.status(200).json({data:data,msg:"",status:200})
+    } 
+    catch (error) {
+        console.log(error)
+    }
+}
 
-module.exports = {createPlaylist,getAllPlaylist}
+module.exports = {createPlaylist,getAllPlaylist,getPlaylist}
